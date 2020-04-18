@@ -1,21 +1,34 @@
 {
-  "name": "cyine-server-boilerplate-sequelize-restapi",
-  "version": "1.0.0",
-  "description": "Rest Api server with ExpressJS and Sequelize ORM",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "Boilerplate",
-    "ExpressJS",
-    "RestAPI",
-    "Sequelize",
-    "SQL",
-    "MySQL",
-    "MariaDB",
-    "PostgreSQL"
-  ],
-  "author": "Gilang Adi Sasongko",
-  "license": "ISC"
+    "name": "cyine-server-boilerplate-sequelize-restapi",
+    "version": "1.0.0",
+    "description": "Rest Api server with ExpressJS and Sequelize ORM",
+    "main": "server.js",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "Boilerplate",
+        "ExpressJS",
+        "RestAPI",
+        "Sequelize",
+        "SQL",
+        "MySQL",
+        "MariaDB",
+        "PostgreSQL"
+    ],
+    "author": "Gilang Adi Sasongko",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mysql2": "^2.1.0",
+        "nodemon": "^2.0.3",
+        "sequelize": "^5.21.6"
+    },
+    "devDependencies": {
+        "sequelize-cli": "^5.5.1"
+    }
 }
