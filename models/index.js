@@ -40,4 +40,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = { ...db, config: path.resolve("config", "config.js") };
+module.exports = db;

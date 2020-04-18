@@ -11,7 +11,7 @@ exports.AuthLogin = async (req, res) => {
         const user = await UserModel.findOne({ where: { email, password } });
         if (user) {
             const token = jwt.sign(
-                { user_id: user.id, level: "user" },
+                { user_id: user.id, level },
                 process.env.SECRET_KEY
             );
             res.status(200).send({

@@ -10,9 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1", route);
-app.use("/", (req, res) => {
-    res.status(200).json({ message: "Hello World!" });
-});
+// app.use("/", (req, res) => {
+//     res.status(200).json({ message: "Hello World!" });
+// });
 
 app.use((err, req, res, next) => {
     if (err.name === "UnauthorizedError") {
