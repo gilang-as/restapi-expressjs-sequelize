@@ -38,6 +38,23 @@ Then, install all the packages that described in `package.json` of both director
 npm install
 ```
 
+Create .env in root directories.
+
+```
+PORT=6969
+SECRET_KEY=ABC123
+DB_CONF=mysql
+DB_HOST=localhost
+DB_NAME=db_demo
+DB_USER=root
+DB_PASS=
+```
+
+Run
+
+```
+npm start
+```
 
 ## Author
 
