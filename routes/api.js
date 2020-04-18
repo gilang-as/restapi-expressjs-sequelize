@@ -7,8 +7,7 @@ router.get("/", (req, res) => {
 });
 
 //AUTH
-const { AuthLogin, AuthRegister } = require("../controllers/Auth");
+const { AuthLogin } = require("../controllers/Auth");
 router.post("/auth/login", AuthLogin);
-router.post("/auth/register", AuthRegister);
 
 module.exports = router;
