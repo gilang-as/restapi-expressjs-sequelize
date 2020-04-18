@@ -1,10 +1,10 @@
 const models = require("../models");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const TodoModel = models.todo;
 
 exports.TodoAll = async (req, res) => {
-    // const token = req.header("Authorization").replace("Bearer ", "");
-    // const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
+    const token = req.header("Authorization").replace("Bearer ", "");
+    const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
 
     try {
         const { page = 1, results } = req.query;
@@ -14,6 +14,7 @@ exports.TodoAll = async (req, res) => {
         const total_items = await TodoModel.count();
 
         const Todo = await TodoModel.findAll({
+            where: { createdBy: user_id },
             limit,
             offset
         });
@@ -28,12 +29,12 @@ exports.TodoAll = async (req, res) => {
     }
 };
 exports.TodoDetails = async (req, res) => {
-    // const token = req.header("Authorization").replace("Bearer ", "");
-    // const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
-    const { id } = req.params;
+    const token = req.header("Authorization").replace("Bearer ", "");
+    const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
+    const { id } = req.query;
     try {
         const Todo = await TodoModel.findOne({
-            where: { id }
+            where: { id, createdBy: user_id }
         });
         res.status(200).send({
             status: true,
@@ -45,10 +46,13 @@ exports.TodoDetails = async (req, res) => {
     }
 };
 exports.TodoCreate = async (req, res) => {
-    // const token = req.header("Authorization").replace("Bearer ", "");
-    // const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
+    const token = req.header("Authorization").replace("Bearer ", "");
+    const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
     try {
-        const Todo = await TodoModel.create(req.body);
+        const Todo = await TodoModel.create({
+            ...req.body,
+            createdBy: user_id
+        });
         res.status(200).send({
             status: true,
             message: "Success Add New Todo",
@@ -58,17 +62,17 @@ exports.TodoCreate = async (req, res) => {
         console.log(err);
     }
 };
-exports.TotoUpdate = async (req, res) => {
-    // const token = req.header("Authorization").replace("Bearer ", "");
-    // const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
-    const { id } = req.params;
+exports.TodoUpdate = async (req, res) => {
+    const token = req.header("Authorization").replace("Bearer ", "");
+    const { user_id } = jwt.verify(token, process.env.SECRET_KEY);
+    const { id } = req.query;
     try {
         const Todo = await TodoModel.update(req.body, {
-            where: { id }
+            where: { id, createdBy: user_id }
         });
         if (Todo) {
             const Data = await TodoModel.findOne({
-                where: { id }
+                where: { id, createdBy: user_id }
             });
             res.status(200).send({
                 status: true,
@@ -86,10 +90,10 @@ exports.TotoUpdate = async (req, res) => {
     }
 };
 exports.TodoDelete = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.query;
     try {
         const Todo = await TodoModel.destroy({
-            where: { id }
+            where: { id, createdBy: user_id }
         });
         if (Todo) {
             res.status(200).send({
