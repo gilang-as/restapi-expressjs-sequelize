@@ -9,12 +9,19 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             title: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
+            description: {
+                allowNull: false,
+                type: Sequelize.TEXT
+            },
             status: {
+                allowNull: false,
                 type: Sequelize.ENUM("ongoing", "process", "done")
             },
             createdBy: {
+                allowNull: false,
                 type: Sequelize.INTEGER
             },
             createdAt: {

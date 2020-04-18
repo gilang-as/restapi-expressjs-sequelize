@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         "todo",
         {
             title: DataTypes.STRING,
+            description: DataTypes.TEXT,
             status: DataTypes.ENUM("ongoing", "process", "done"),
             createdBy: DataTypes.INTEGER
         },
