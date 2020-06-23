@@ -4,7 +4,7 @@ var cors = require("cors");
 const express = require("express");
 const app = express();
 const route = require("./routes/api");
-const port = process.env.PORT;
+const port = process.env.APP_PORT;
 
 app.use(cors());
 app.use(express.json());
